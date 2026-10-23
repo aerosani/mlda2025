@@ -5,7 +5,7 @@ jupyter:
       extension: .md
       format_name: markdown
       format_version: '1.3'
-      jupytext_version: 1.17.3
+      jupytext_version: 1.19.6
   kernelspec:
     display_name: Python 3 (ipykernel)
     language: python
@@ -56,7 +56,7 @@ def max_after_zero(x: np.array) -> int:
     Вход: np.array([0, 2, 0, 3])
     Выход: 3
     """
-    assert False, 'Не реализовано!' # Здесь должен быть ваш код
+    return np.max(x[1:][x[:-1] == 0])
 ```
 
 ```python colab={"base_uri": "https://localhost:8080/", "height": 293} executionInfo={"elapsed": 252, "status": "error", "timestamp": 1694439761443, "user": {"displayName": "Sergey Korpachev", "userId": "09181340988160569540"}, "user_tz": -180} id="a58b05aa" outputId="bfa9232f-9fe7-4333-da96-0a3cc4f0f59d" editable=false slideshow={"slide_type": ""}
@@ -89,7 +89,7 @@ def block_matrix(block: np.array) -> np.array:
                      [1, 2, 1, 2],
                      [3, 4, 3, 4]])
     """
-    assert False, 'Не реализовано!' # Здесь должен быть ваш код
+    return np.tile(block, (2,2))
 ```
 
 ```python colab={"base_uri": "https://localhost:8080/", "height": 327} executionInfo={"elapsed": 9, "status": "error", "timestamp": 1694439791604, "user": {"displayName": "Sergey Korpachev", "userId": "09181340988160569540"}, "user_tz": -180} id="f0ce9850" outputId="c67f53b4-ecc6-4fa7-81ac-432927da7dde" editable=false slideshow={"slide_type": ""}
@@ -125,7 +125,8 @@ def diag_prod(matrix: np.array) -> int:
                     [1, 3, 4, 6]])
     Выход: 36
     """
-    assert False, 'Не реализовано!' # Здесь должен быть ваш код
+    diag = np.diag(matrix)
+    return np.prod(diag[diag !=0])
 ```
 
 ```python colab={"base_uri": "https://localhost:8080/", "height": 310} executionInfo={"elapsed": 5, "status": "error", "timestamp": 1694439797817, "user": {"displayName": "Sergey Korpachev", "userId": "09181340988160569540"}, "user_tz": -180} id="fa039421" outputId="080cb3f5-b033-4cf2-bb9a-8f9c852090a6" editable=false slideshow={"slide_type": ""}
@@ -171,10 +172,11 @@ class StandardScaler:
     """
         
     def fit(self, X: np.array) -> None:
-        assert False, 'Не реализовано!' # Здесь должен быть ваш код
+        self.mean_ = np.mean(X, axis = 0)
+        self.var_ = np.var(X, axis = 0)
 
     def transform(self, X: np.array) -> np.array:
-        assert False, 'Не реализовано!' # Здесь должен быть ваш код
+        return (X - self.mean_) / np.sqrt(self.var_)
 ```
 
 ```python colab={"base_uri": "https://localhost:8080/", "height": 361} executionInfo={"elapsed": 6, "status": "error", "timestamp": 1694439800521, "user": {"displayName": "Sergey Korpachev", "userId": "09181340988160569540"}, "user_tz": -180} id="352d0513" outputId="42f66f0a-e221-4c90-f081-2007cd20b811" editable=false slideshow={"slide_type": ""}
@@ -227,7 +229,8 @@ def antiderivative(coefs: np.array, const: float) -> np.array:
     Вход: [8, 12, 8, 1], 42
     Выход: [2., 4., 4., 1., 42.]
     """
-    assert False, 'Не реализовано!' # Здесь должен быть ваш код
+    igtd = coefs / np.arange(len(coefs), 0, -1)
+    return np.append(igtd, const)
 ```
 
 ```python colab={"base_uri": "https://localhost:8080/", "height": 327} executionInfo={"elapsed": 6, "status": "error", "timestamp": 1694439803375, "user": {"displayName": "Sergey Korpachev", "userId": "09181340988160569540"}, "user_tz": -180} id="41288733" outputId="9e4b86da-8361-4b6b-8b92-bbe46b371c70" editable=false slideshow={"slide_type": ""}
@@ -253,4 +256,16 @@ score += 1
 
 ```python editable=false slideshow={"slide_type": ""}
 print('Итоговый балл:', score)
+```
+
+```python
+
+```
+
+```python
+
+```
+
+```python
+
 ```
